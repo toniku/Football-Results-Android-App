@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FootballResultsApp</string>
+    <string name="title_activity_standings">StandingsActivity</string>
+</resources>

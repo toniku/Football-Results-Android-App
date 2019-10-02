@@ -3,6 +3,7 @@ package com.example.footballresultsapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,15 +25,16 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.footballresultsapp";
+    //    public String[] areaCodes = {"2001", "2002"};
     public String[] areaCodes = {"2001", "2002", "2014", "2015", "2019", "2021"};
     private ListView listView;
-    private ArrayList<League> result = new ArrayList<>();
+    private ArrayList<League> leagues = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView = findViewById(R.id.listaview);
+        listView = findViewById(R.id.leagueListView);
 
         for (String s : areaCodes) {
             makeRequest(s);
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                League selected = result.get(position);
+                League selected = leagues.get(position);
                 String codeToPass = selected.getCompetitionID();
                 Intent intent = new Intent(getApplicationContext(), StandingsActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, codeToPass);
@@ -57,30 +59,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    /*
-                    JSONArray jsonArray = response.getJSONArray("teams");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        String league = object.getString("name");
-                        result.add(league);
-                    }*/
-
-                    //näin saa yhden liigan
                     String leagueName = (String) response.get("name");
                     int competitionID = (Integer) response.get("id");
-                    //Log.d("TAGI", competitionID);
                     League leagueToAdd = new League(leagueName, Integer.toString(competitionID));
-                    result.add(leagueToAdd);
+                    leagues.add(leagueToAdd);
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.d("Error", "Error loading Volley data!");
                 }
                 setupView();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+                Log.d("Error", "Error loading Volley data!");
             }
         }) {
             @Override
@@ -95,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setupView() {
         final ArrayAdapter<League> adapter;
-        adapter = new LeagueArrayAdapter(this, result);
+        adapter = new LeagueArrayAdapter(this, leagues);
         listView.setAdapter(adapter);
     }
 }

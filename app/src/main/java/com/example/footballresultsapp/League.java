@@ -13,10 +13,6 @@ public class League {
         return competitionID;
     }
 
-    public void setCompetitionID(String competitionID) {
-        this.competitionID = competitionID;
-    }
-
     public String getName() {
         return name;
     }

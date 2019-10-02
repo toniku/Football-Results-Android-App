@@ -11,61 +11,76 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.5"
+            android:background="@drawable/back"
             android:gravity="center_horizontal"
             android:text="#"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:paddingLeft="10sp"
-            android:text="Team" />
+            android:layout_height="match_parent"
+            android:layout_weight="2.8"
+            android:background="@drawable/back"
+            android:gravity="center"
+            android:text="Team"
+            android:textStyle="bold" />
 
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Games" />
+            android:text="Games"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Wins" />
+            android:text="Wins"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Draws" />
+            android:text="Draws"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Loses" />
+            android:text="Loses"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Points" />
+            android:text="Points"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <ListView
-        android:id="@+id/teams_listView"
+        android:id="@+id/teamsListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent">
 
     </ListView>
 

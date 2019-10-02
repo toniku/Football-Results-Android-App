@@ -2,20 +2,19 @@ package com.example.footballresultsapp;
 
 public class League {
 
-    String leagueCode;
-    String name;
+    private String name, competitionID;
 
-    public League(String leagueCode, String name) {
-        this.leagueCode = leagueCode;
+    public League(String name, String competitionID) {
         this.name = name;
+        this.competitionID = competitionID;
     }
 
-    public String getLeagueCode() {
-        return leagueCode;
+    public String getCompetitionID() {
+        return competitionID;
     }
 
-    public void setLeagueCode(String leagueCode) {
-        this.leagueCode = leagueCode;
+    public void setCompetitionID(String competitionID) {
+        this.competitionID = competitionID;
     }
 
     public String getName() {

@@ -42,7 +42,7 @@ public class LeagueArrayAdapter extends ArrayAdapter<League> {
         League league = getItem(position);
 
         if (convertView == null) {
-            int layoutId = R.layout.list_item;
+            int layoutId = R.layout.league_list_item;
             convertView = LayoutInflater.from(getContext()).inflate(layoutId, parent, false);
         }
         TextView textViewName = convertView.findViewById(R.id.league_textView);
@@ -67,7 +67,6 @@ public class LeagueArrayAdapter extends ArrayAdapter<League> {
             case "Serie A":
                 leagueImage.setImageResource(R.drawable.serie_a);
                 break;
-
         }
         return convertView;
     }

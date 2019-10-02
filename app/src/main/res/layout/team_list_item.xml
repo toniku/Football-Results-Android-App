@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/team_position"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/team_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2.5"
+        android:autoSizeMaxTextSize="20dp"
+        android:autoSizeMinTextSize="13dp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:maxLines="2"
+        android:paddingStart="5sp"
+        android:paddingLeft="5sp"
+        android:paddingEnd="5dp"
+        android:paddingRight="5dp"
+        android:text="Borussia Mönchengladbach" />
+
+
+    <TextView
+        android:id="@+id/team_games"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="6"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/team_wins"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="4"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/team_draws"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="2"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/team_loses"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/team_points"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="20"
+        android:textSize="20sp" />
+</LinearLayout>

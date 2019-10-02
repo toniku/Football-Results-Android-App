@@ -3,6 +3,7 @@ package com.example.footballresultsapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -33,20 +34,22 @@ public class StandingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_standings);
 
         Intent intent = getIntent();
-        String leagueCode = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
-        listView = findViewById(R.id.listaViewStandings);
-        getStandings(leagueCode);
+        String competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
+        listView = findViewById(R.id.teams_listView);
+        getCompetition(competitionID);
+        Log.d("StandingsActivity", competitionID);
     }
 
 
     //EI TOIMI
-    public void getStandings(String code) {
+    public void getCompetition(String competitionID) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.football-data.org/v2/competitions/" + code + "/standings";
+        String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/standings";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    Log.d("getCompetition", response.toString());
                     JSONArray jsonArray = response.getJSONArray("table");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);

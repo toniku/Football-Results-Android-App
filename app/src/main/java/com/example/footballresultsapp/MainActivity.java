@@ -3,13 +3,11 @@ package com.example.footballresultsapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,9 +24,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.footballresultsapp";
-    public String[] areaCodes = {
-            "2001", "2002", "2014", "2015", "2019", "2021"
-    };
+    public String[] areaCodes = {"2001", "2002", "2014", "2015", "2019", "2021"};
     private ListView listView;
     private ArrayList<League> result = new ArrayList<>();
 
@@ -46,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 League selected = result.get(position);
-                String codeToPass = selected.getLeagueCode();
+                String codeToPass = selected.getCompetitionID();
                 Intent intent = new Intent(getApplicationContext(), StandingsActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, codeToPass);
                 startActivity(intent);
@@ -70,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
                     }*/
 
                     //näin saa yhden liigan
-                    Log.d("Response JSON:", response.toString());
-                    String test = (String) response.get("name");
-                    String leagueCode = (String) response.get("code");
-                    League leagueToAdd = new League(leagueCode, test);
+                    String leagueName = (String) response.get("name");
+                    int competitionID = (Integer) response.get("id");
+                    //Log.d("TAGI", competitionID);
+                    League leagueToAdd = new League(leagueName, Integer.toString(competitionID));
                     result.add(leagueToAdd);
 
                 } catch (Exception e) {
@@ -88,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("X-Auth-Token", "5e25ad658d7c4577aec218810b77e937");
                 return params;

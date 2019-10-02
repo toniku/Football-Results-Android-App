@@ -1,8 +1,9 @@
 package com.example.footballresultsapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,8 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -26,13 +25,12 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXTRA_MESSAGE = "com.example.footballresultsapp";
+    public String[] areaCodes = {
+            "2001", "2002", "2014", "2015", "2019", "2021"
+    };
     private ListView listView;
     private ArrayList<League> result = new ArrayList<>();
-    public static final String EXTRA_MESSAGE = "com.example.footballresultsapp";
-
-    public String[] areaCodes = {
-            "2001","2002","2014","2015","2019","2021"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.listaview);
 
-        for(String s : areaCodes) {
+        for (String s : areaCodes) {
             makeRequest(s);
         }
 
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void makeRequest(String code) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.football-data.org/v2/competitions/"+code;
+        String url = "https://api.football-data.org/v2/competitions/" + code;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -71,11 +69,12 @@ public class MainActivity extends AppCompatActivity {
                         result.add(league);
                     }*/
 
-                //näin saa yhden liigan
-                String test = (String) response.get("name");
-                String leagueCode = (String) response.get("code");
-                League leagueToAdd = new League(leagueCode, test);
-                result.add(leagueToAdd);
+                    //näin saa yhden liigan
+                    Log.d("Response JSON:", response.toString());
+                    String test = (String) response.get("name");
+                    String leagueCode = (String) response.get("code");
+                    League leagueToAdd = new League(leagueCode, test);
+                    result.add(leagueToAdd);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();

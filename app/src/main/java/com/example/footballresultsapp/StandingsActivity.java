@@ -1,8 +1,8 @@
 package com.example.footballresultsapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -42,7 +42,7 @@ public class StandingsActivity extends AppCompatActivity {
     //EI TOIMI
     public void getStandings(String code) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.football-data.org/v2/competitions/"+code+"/standings";
+        String url = "https://api.football-data.org/v2/competitions/" + code + "/standings";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -66,7 +66,7 @@ public class StandingsActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();

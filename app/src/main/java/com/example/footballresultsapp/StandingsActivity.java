@@ -42,8 +42,8 @@ public class StandingsActivity extends AppCompatActivity {
 
     public void getCompetition(String competitionID) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/standings";
-        //String url = "https://api.football-data.org/v2/matches";
+        //String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/standings";
+        String url = "https://api.football-data.org/v2/competitions/"+competitionID+"/matches";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

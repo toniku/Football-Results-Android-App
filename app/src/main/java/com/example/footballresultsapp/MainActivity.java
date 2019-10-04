@@ -25,7 +25,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.footballresultsapp";
-    //    public String[] areaCodes = {"2001", "2002"};
+       // public String[] areaCodes = {"2001", "2002"};
     public String[] areaCodes = {"2001", "2002", "2014", "2015", "2019", "2021"};
     private ListView listView;
     private ArrayList<League> leagues = new ArrayList<>();
@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 League selected = leagues.get(position);
                 String codeToPass = selected.getCompetitionID();
-                Intent intent = new Intent(getApplicationContext(), StandingsActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), StandingsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), UpcomingMatches.class);
                 intent.putExtra(EXTRA_MESSAGE, codeToPass);
                 startActivity(intent);
             }

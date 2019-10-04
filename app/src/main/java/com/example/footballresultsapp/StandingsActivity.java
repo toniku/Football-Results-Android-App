@@ -1,8 +1,9 @@
 package com.example.footballresultsapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -25,7 +26,7 @@ import java.util.Map;
 public class StandingsActivity extends AppCompatActivity {
 
     private ListView listView;
-    private ArrayList<String> result = new ArrayList<>();
+    private ArrayList<Team> teams = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,40 +34,47 @@ public class StandingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_standings);
 
         Intent intent = getIntent();
-        String leagueCode = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
-        listView = findViewById(R.id.listaViewStandings);
-        getStandings(leagueCode);
+        String competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
+        listView = findViewById(R.id.teamsListView);
+        getCompetition(competitionID);
+        Log.d("StandingsActivity", competitionID);
     }
 
-
-    //EI TOIMI
-    public void getStandings(String code) {
+    public void getCompetition(String competitionID) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.football-data.org/v2/competitions/"+code+"/standings";
+        String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/standings";
+        //String url = "https://api.football-data.org/v2/matches";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray jsonArray = response.getJSONArray("table");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        int position = object.getInt("position");
-                        String team = object.getString("name");
-                        int playedGames = object.getInt("playedGames");
-                        int wons = object.getInt("won");
-                        //result.add(league);
+                    JSONArray jsonArray = response.getJSONArray("standings");
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    JSONArray tableArray = jsonObject.getJSONArray("table");
+                    for (int i = 0; i < tableArray.length(); i++) {
+                        JSONObject teamObject = tableArray.getJSONObject(i);
+                        int ranking = teamObject.getInt("position");
+                        JSONObject innerObjectTeam = teamObject.getJSONObject("team");
+                        String teamName = innerObjectTeam.getString("name");
+                        int playedGames = teamObject.getInt("playedGames");
+                        int wins = teamObject.getInt("won");
+                        int draws = teamObject.getInt("draw");
+                        int losses = teamObject.getInt("lost");
+                        int points = teamObject.getInt("points");
+                        Team teamToAdd = new Team(ranking, teamName, playedGames, wins, draws, losses, points);
+                        teams.add(teamToAdd);
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.d("Error", "Error loading Volley data!");
                 }
                 setupView();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+                Log.d("Error", "Error loading Volley data!");
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
@@ -78,8 +86,8 @@ public class StandingsActivity extends AppCompatActivity {
     }
 
     public void setupView() {
-        final ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, result);
+        final ArrayAdapter<Team> adapter;
+        adapter = new TeamArrayAdapter(this, teams);
         listView.setAdapter(adapter);
     }
 }

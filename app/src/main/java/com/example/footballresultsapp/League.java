@@ -2,28 +2,22 @@ package com.example.footballresultsapp;
 
 public class League {
 
-    public String getLeagueCode() {
-        return leagueCode;
+    private String name, competitionID;
+
+    public League(String name, String competitionID) {
+        this.name = name;
+        this.competitionID = competitionID;
     }
 
-    public void setLeagueCode(String leagueCode) {
-        this.leagueCode = leagueCode;
+    public String getCompetitionID() {
+        return competitionID;
     }
-
-    String leagueCode;
 
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    String name;
-
-    public League(String leagueCode, String name) {
-        this.leagueCode = leagueCode;
         this.name = name;
     }
 

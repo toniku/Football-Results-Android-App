@@ -15,24 +15,19 @@
         android:text="Borussia Mönchengladbach"/>
 
     <LinearLayout
+        android:gravity="center"
         android:background="@drawable/back"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="13.09.2019"
-            android:gravity="center"/>
 
         <TextView
-            android:layout_marginTop="2dp"
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="17dp"
             android:text="19:00"
             android:gravity="center"/>
 

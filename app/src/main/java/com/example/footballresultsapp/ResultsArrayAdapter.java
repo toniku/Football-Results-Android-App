@@ -42,15 +42,27 @@ public class ResultsArrayAdapter extends ArrayAdapter<Match> {
     public View getView(int itemPosition, @Nullable View convertView, @NonNull ViewGroup parent) {
         Match match = getItem(itemPosition);
 
-        if (convertView == null) {
-            int layoutId = R.layout.result_list_item;
-            convertView = LayoutInflater.from(getContext()).inflate(layoutId, parent, false);
+        int earlier = 0;
+        if(itemPosition > 0){
+            earlier = itemPosition -1;
         }
 
+        Match earlierMatch = getItem(earlier);
+
+        int layoutId = 0;
         String winner = match.getWinner();
         String unparsedDate = match.getDate();
         String parsedDate = unparsedDate.substring(0,10);
         String parsedTime = unparsedDate.substring(11,16);
+        String earlierMatchDate = earlierMatch.getDate().substring(0,10);
+
+        if(earlierMatchDate.equals(parsedDate)){
+            layoutId = R.layout.result_list_item;
+        } else {
+            layoutId = R.layout.result_new_day_list_item;
+        }
+
+        convertView = LayoutInflater.from(getContext()).inflate(layoutId, parent, false);
 
         TextView date = convertView.findViewById(R.id.date);
         TextView time = convertView.findViewById(R.id.time);
@@ -72,7 +84,9 @@ public class ResultsArrayAdapter extends ArrayAdapter<Match> {
             homeTeam.setTypeface(null, Typeface.NORMAL);
         }
 
-        date.setText(parsedDate);
+        if(layoutId == R.layout.result_new_day_list_item) {
+            date.setText(parsedDate);
+        }
         time.setText(parsedTime);
         homeTeam.setText(match.getHomeTeam());
         awayTeam.setText(match.getAwayTeam());

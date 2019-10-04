@@ -39,33 +39,30 @@ public class UpcomingMatchesArrayAdapter extends ArrayAdapter<Match> {
     @Override
     public View getView(int itemPosition, @Nullable View convertView, @NonNull ViewGroup parent) {
         Match match = getItem(itemPosition);
-        /*
+
         int earlier = 0;
         if(itemPosition > 0){
-            int lasku = itemPosition +1;
-            earlier = lasku;
+            earlier = itemPosition -1;
         }
 
         Match earlierMatch = getItem(earlier);
 
-*/
+
         int layoutId = 0;
         String winner = match.getWinner();
         String unparsedDate = match.getDate();
         String parsedDate = unparsedDate.substring(0,10);
         String parsedTime = unparsedDate.substring(11,16);
-        //String earlierMatchDate = earlierMatch.getDate().substring(0,10);
+        String earlierMatchDate = earlierMatch.getDate().substring(0,10);
 
 
 
-        //if (convertView == null) {
-           // if(earlierMatchDate.equals(parsedDate)){
+            if(earlierMatchDate.equals(parsedDate)){
                 layoutId = R.layout.upcoming_match_list_item;
-            //} else {
-            //    layoutId = R.layout.upcoming_match_new_day_list_item;
-            //}
+            } else {
+               layoutId = R.layout.upcoming_match_new_day_list_item;
+            }
 
-        //}
 
         convertView = LayoutInflater.from(getContext()).inflate(layoutId, parent, false);
 
@@ -74,7 +71,9 @@ public class UpcomingMatchesArrayAdapter extends ArrayAdapter<Match> {
         TextView homeTeam = convertView.findViewById(R.id.homeTeam);
         TextView awayTeam = convertView.findViewById(R.id.awayTeam);
 
-        date.setText(parsedDate);
+        if(layoutId == R.layout.upcoming_match_new_day_list_item) {
+            date.setText(parsedDate);
+        }
         time.setText(parsedTime);
         homeTeam.setText(match.getHomeTeam());
         awayTeam.setText(match.getAwayTeam());

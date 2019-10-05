@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -26,19 +23,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UpcomingMatches extends AppCompatActivity {
+public class ResultsActivity extends AppCompatActivity {
 
     private ListView listView;
-    //private ArrayList<Match> results = new ArrayList<>();
-    private ArrayList<Match> upcoming = new ArrayList<>();
+    private ArrayList<Match> results = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upcoming_matches);
+        setContentView(R.layout.activity_results);
         Intent intent = getIntent();
         String competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
-        listView = findViewById(R.id.upcomingMatchesListView);
+        listView = findViewById(R.id.resultsListView);
         getCompetition(competitionID);
     }
 
@@ -58,16 +54,21 @@ public class UpcomingMatches extends AppCompatActivity {
                         String homeTeam = homeObject.getString("name");
                         JSONObject awayObject = teamObject.getJSONObject("awayTeam");
                         String awayTeam = awayObject.getString("name");
-                        if(status.contains("SCHEDULED")){
-                            Match upcomingMatch = new Match(date, homeTeam, awayTeam);
-                            upcoming.add(upcomingMatch);
+                        if(status.contains("FINISHED")){
+                            JSONObject gameData = teamObject.getJSONObject("score");
+                            String winner = gameData.getString("winner");
+                            JSONObject score = gameData.getJSONObject("fullTime");
+                            int homeGoals = score.getInt("homeTeam");
+                            int awayGoals = score.getInt("awayTeam");
+                            Match result = new Match(date, winner, homeTeam, awayTeam, homeGoals, awayGoals);
+                            results.add(result);
+                        } else {
                         }
                     }
                 } catch (JSONException e) {
                     Log.d("Error", "Error loading Volley data!");
                 }
-                //setupViewResults();
-                setupViewUpcoming();
+                setupViewResults();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -85,9 +86,9 @@ public class UpcomingMatches extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-    public void setupViewUpcoming() {
+    public void setupViewResults() {
         final ArrayAdapter<Match> adapter;
-        adapter = new UpcomingMatchesArrayAdapter(this, upcoming);
+        adapter = new ResultsArrayAdapter(this, results);
         listView.setAdapter(adapter);
     }
 }

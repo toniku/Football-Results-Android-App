@@ -3,9 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="RESULTS AND SCHEDULE"
+        android:title="RESULTS"
         app:showAsAction="always"
-        android:id="@+id/menuBtn"
+        android:id="@+id/menuResults"
+        ></item>
+
+    <item
+        android:title="SCHEDULE"
+        app:showAsAction="always"
+        android:id="@+id/menuSchedule"
         ></item>
 
 </menu>

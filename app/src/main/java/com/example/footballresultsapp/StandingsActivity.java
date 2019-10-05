@@ -55,7 +55,15 @@ public class StandingsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-        Intent intent = new Intent(getApplicationContext(), UpcomingMatches.class);
+        Intent intent = null;
+        switch (item.getItemId()) {
+            case R.id.menuResults:
+                intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                break;
+            case R.id.menuSchedule:
+                intent = new Intent(getApplicationContext(), UpcomingMatches.class);
+                break;
+        }
         intent.putExtra(EXTRA_MESSAGE, competitionID);
         startActivity(intent);
         return true;

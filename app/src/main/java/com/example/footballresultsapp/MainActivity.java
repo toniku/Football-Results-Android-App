@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 League selected = leagues.get(position);
                 String codeToPass = selected.getCompetitionID();
-                //Intent intent = new Intent(getApplicationContext(), StandingsActivity.class);
-                Intent intent = new Intent(getApplicationContext(), UpcomingMatches.class);
+                Intent intent = new Intent(getApplicationContext(), StandingsActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), UpcomingMatches.class);
                 intent.putExtra(EXTRA_MESSAGE, codeToPass);
                 startActivity(intent);
             }

@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -26,7 +29,9 @@ import java.util.Map;
 public class StandingsActivity extends AppCompatActivity {
 
     private ListView listView;
+    public static final String EXTRA_MESSAGE = "com.example.footballresultsapp";
     private ArrayList<Team> teams = new ArrayList<>();
+    String competitionID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +39,32 @@ public class StandingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_standings);
 
         Intent intent = getIntent();
-        String competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
+        competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
         listView = findViewById(R.id.teamsListView);
         getCompetition(competitionID);
         Log.d("StandingsActivity", competitionID);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        Intent intent = new Intent(getApplicationContext(), UpcomingMatches.class);
+        intent.putExtra(EXTRA_MESSAGE, competitionID);
+        startActivity(intent);
+        return true;
+    }
+
     public void getCompetition(String competitionID) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        //String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/standings";
-        String url = "https://api.football-data.org/v2/competitions/"+competitionID+"/matches";
+        String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/standings";
+        //String url = "https://api.football-data.org/v2/competitions/"+competitionID+"/matches";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

@@ -9,7 +9,7 @@
         android:id="@+id/scorerName"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="44"
+        android:layout_weight="43"
         android:background="@drawable/back"
         android:gravity="center"
         android:text="Bablo"
@@ -19,9 +19,9 @@
         android:id="@+id/scorerTeamName"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="44"
+        android:layout_weight="43"
         android:background="@drawable/back"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="Huuhkajat"
         android:textStyle="bold" />
 
@@ -31,7 +31,7 @@
         android:layout_height="match_parent"
         android:layout_weight="14"
         android:background="@drawable/back"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="5"
         android:textStyle="bold" />
 

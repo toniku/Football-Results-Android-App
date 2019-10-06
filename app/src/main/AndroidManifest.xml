@@ -14,6 +14,7 @@
         <activity android:name=".ResultsActivity"></activity>
         <activity android:name=".UpcomingMatches" />
         <activity android:name=".StandingsActivity" />
+        <activity android:name=".ScorersActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

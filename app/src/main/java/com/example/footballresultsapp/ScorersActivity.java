@@ -48,11 +48,9 @@ public class ScorersActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
 
-                //Log.d("jorse",  response.toString());
+                Log.d("jorse",  response.toString());
 
                 try {
-                    Log.d("jorse", "try");
-
                     JSONArray jsonArray = response.getJSONArray("scorers");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -60,10 +58,15 @@ public class ScorersActivity extends AppCompatActivity {
                         Log.d("jorse", "for");
 
                         JSONObject scorerObject = jsonArray.getJSONObject(i);
+                        JSONObject playerObject = scorerObject.getJSONObject("player");
+                        String scorerName = playerObject.getString("name");
 
-                        String scorerName = scorerObject.getString("name");
+                        JSONObject teamObject = scorerObject.getJSONObject("team");
+                        String teamName = playerObject.getString("name");
 
-                        Scorer scoreToAdd = new Scorer(scorerName);
+                        int scorerGoals = scorerObject.getInt("numberOfGoals");
+
+                        Scorer scoreToAdd = new Scorer(scorerName, teamName, scorerGoals);
                         scorers.add(scoreToAdd);
                     }
 
@@ -89,8 +92,6 @@ public class ScorersActivity extends AppCompatActivity {
     }
 
     public void setupView() {
-
-        Log.d("jorse", "setupview");
 
         final ArrayAdapter<Scorer> adapter;
         adapter = new ScorerArrayAdapter(this, scorers);

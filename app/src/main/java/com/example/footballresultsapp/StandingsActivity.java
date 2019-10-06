@@ -63,6 +63,9 @@ public class StandingsActivity extends AppCompatActivity {
             case R.id.menuSchedule:
                 intent = new Intent(getApplicationContext(), UpcomingMatches.class);
                 break;
+            case R.id.menuScorers:
+                intent = new Intent(getApplicationContext(), ScorersActivity.class);
+                break;
         }
         intent.putExtra(EXTRA_MESSAGE, competitionID);
         startActivity(intent);

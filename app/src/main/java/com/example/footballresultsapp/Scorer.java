@@ -5,8 +5,8 @@ public class Scorer {
     private String scorerName, teamName;
     private int goals;
 
-    public Scorer(String team) {
-        this.scorerName = scorerName;
+    public Scorer(String scorerName, String team, int scorerGoals) {
+        this.scorerName = this.scorerName;
         this.teamName = teamName;
         this.goals = goals;
     }

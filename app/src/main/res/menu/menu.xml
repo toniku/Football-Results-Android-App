@@ -14,4 +14,10 @@
         android:id="@+id/menuSchedule"
         ></item>
 
+    <item
+        android:title="SCORERS"
+        app:showAsAction="always"
+        android:id="@+id/menuScorers"
+        ></item>
+
 </menu>

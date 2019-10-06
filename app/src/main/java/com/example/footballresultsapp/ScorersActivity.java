@@ -34,8 +34,8 @@ public class ScorersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scorers);
-        getSupportActionBar().setTitle("Scorers");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setTitle("Top 10 Scorers");
         Intent intent = getIntent();
         String competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
         listView = findViewById(R.id.listViewScorers);

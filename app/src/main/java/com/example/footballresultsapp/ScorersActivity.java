@@ -43,7 +43,7 @@ public class ScorersActivity extends AppCompatActivity {
 
     private void getCompetition(String competitionID) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.football-data.org/v2/competitions/" + 2001 + "/scorers";
+        String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/scorers";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

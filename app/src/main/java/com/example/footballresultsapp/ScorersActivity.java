@@ -62,7 +62,7 @@ public class ScorersActivity extends AppCompatActivity {
                         String scorerName = playerObject.getString("name");
 
                         JSONObject teamObject = scorerObject.getJSONObject("team");
-                        String teamName = playerObject.getString("name");
+                        String teamName = teamObject.getString("name");
 
                         int scorerGoals = scorerObject.getInt("numberOfGoals");
 

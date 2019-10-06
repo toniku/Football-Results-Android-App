@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:weightSum="100">
+
+    <TextView
+        android:id="@+id/scorerName"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="44"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="Bablo"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/scorerTeamName"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="44"
+        android:background="@drawable/back"
+        android:gravity="center_horizontal"
+        android:text="Huuhkajat"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/goals"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="14"
+        android:background="@drawable/back"
+        android:gravity="center_horizontal"
+        android:text="5"
+        android:textStyle="bold" />
+
+</LinearLayout>

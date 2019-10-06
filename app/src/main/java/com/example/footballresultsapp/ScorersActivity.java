@@ -48,19 +48,18 @@ public class ScorersActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
 
-                Log.d("jorse",  response.toString());
+                //Log.d("jorse",  response.toString());
 
                 try {
                     Log.d("jorse", "try");
 
                     JSONArray jsonArray = response.getJSONArray("scorers");
-                    JSONObject jsonObject = jsonArray.getJSONObject(0);
-                    JSONArray tableArray = jsonObject.getJSONArray("player");
-                    for (int i = 0; i < tableArray.length(); i++) {
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
 
                         Log.d("jorse", "for");
 
-                        JSONObject scorerObject = tableArray.getJSONObject(i);
+                        JSONObject scorerObject = jsonArray.getJSONObject(i);
 
                         String scorerName = scorerObject.getString("name");
 

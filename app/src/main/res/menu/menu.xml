@@ -3,20 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="RESULTS"
-        app:showAsAction="always"
+        android:title="Results"
         android:id="@+id/menuResults"
         ></item>
 
     <item
-        android:title="SCHEDULE"
-        app:showAsAction="always"
+        android:title="Upcoming matches"
         android:id="@+id/menuSchedule"
         ></item>
 
     <item
-        android:title="SCORERS"
-        app:showAsAction="always"
+        android:title="Scorers"
         android:id="@+id/menuScorers"
         ></item>
 

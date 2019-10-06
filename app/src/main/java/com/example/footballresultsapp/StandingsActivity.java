@@ -2,7 +2,7 @@ package com.example.footballresultsapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,13 +36,13 @@ public class StandingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Teams");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_standings);
-
         Intent intent = getIntent();
         competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
         listView = findViewById(R.id.teamsListView);
         getCompetition(competitionID);
-        Log.d("StandingsActivity", competitionID);
     }
 
     @Override
@@ -55,20 +55,27 @@ public class StandingsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-        Intent intent = null;
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.menuResults:
                 intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, competitionID);
+                startActivity(intent);
                 break;
             case R.id.menuSchedule:
-                intent = new Intent(getApplicationContext(), UpcomingMatches.class);
+                intent = new Intent(getApplicationContext(), UpcomingMatchesActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, competitionID);
+                startActivity(intent);
                 break;
             case R.id.menuScorers:
                 intent = new Intent(getApplicationContext(), ScorersActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, competitionID);
+                startActivity(intent);
+                break;
+            case android.R.id.home:
+                finish();
                 break;
         }
-        intent.putExtra(EXTRA_MESSAGE, competitionID);
-        startActivity(intent);
         return true;
     }
 

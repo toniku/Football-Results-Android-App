@@ -2,8 +2,9 @@ package com.example.footballresultsapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -33,12 +34,22 @@ public class ScorersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scorers);
-
+        getSupportActionBar().setTitle("Scorers");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         String competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
         listView = findViewById(R.id.listViewScorers);
         getCompetition(competitionID);
-        Log.d("ScorersActivity", competitionID);
+        Log.d("        ScorersActivity", competitionID);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void getCompetition(String competitionID) {

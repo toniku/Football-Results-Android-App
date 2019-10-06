@@ -1,9 +1,10 @@
 package com.example.footballresultsapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -32,15 +33,26 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+        setTitle("Results");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         String competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
         listView = findViewById(R.id.resultsListView);
         getCompetition(competitionID);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void getCompetition(String competitionID) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.football-data.org/v2/competitions/"+competitionID+"/matches";
+        String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/matches";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -54,7 +66,7 @@ public class ResultsActivity extends AppCompatActivity {
                         String homeTeam = homeObject.getString("name");
                         JSONObject awayObject = teamObject.getJSONObject("awayTeam");
                         String awayTeam = awayObject.getString("name");
-                        if(status.contains("FINISHED")){
+                        if (status.contains("FINISHED")) {
                             JSONObject gameData = teamObject.getJSONObject("score");
                             String winner = gameData.getString("winner");
                             JSONObject score = gameData.getJSONObject("fullTime");

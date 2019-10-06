@@ -49,7 +49,7 @@ public class ScorerArrayAdapter extends ArrayAdapter<Scorer> {
         TextView scorerTeamName = convertView.findViewById(R.id.scorerTeamName);
         TextView goals = convertView.findViewById(R.id.goals);
 
-        scorerName.setText(scorer.getScorerName());
+        scorerName.setText(String.valueOf(scorer.getScorerName()));
         scorerTeamName.setText(scorer.getTeamName());
         goals.setText(String.valueOf(scorer.getGoals()));
 

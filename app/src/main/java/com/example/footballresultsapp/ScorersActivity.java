@@ -1,8 +1,8 @@
 package com.example.footballresultsapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -43,30 +43,28 @@ public class ScorersActivity extends AppCompatActivity {
 
     private void getCompetition(String competitionID) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/scorers";
+        String url = "https://api.football-data.org/v2/competitions/" + 2001 + "/scorers";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
-                Log.d("jorse",  response.toString());
 
                 try {
                     JSONArray jsonArray = response.getJSONArray("scorers");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                        Log.d("jorse", "for");
-
                         JSONObject scorerObject = jsonArray.getJSONObject(i);
                         JSONObject playerObject = scorerObject.getJSONObject("player");
                         String scorerName = playerObject.getString("name");
-
                         JSONObject teamObject = scorerObject.getJSONObject("team");
                         String teamName = teamObject.getString("name");
-
                         int scorerGoals = scorerObject.getInt("numberOfGoals");
-
                         Scorer scoreToAdd = new Scorer(scorerName, teamName, scorerGoals);
+
+                        Log.d("Scorer Name: ", scorerName);
+                        Log.d("Scorer teamName: ", teamName);
+                        Log.d("Scorer Goals: ", Integer.toString(scorerGoals));
+
                         scorers.add(scoreToAdd);
                     }
 

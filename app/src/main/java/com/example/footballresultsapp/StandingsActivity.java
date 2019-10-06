@@ -28,10 +28,10 @@ import java.util.Map;
 
 public class StandingsActivity extends AppCompatActivity {
 
-    private ListView listView;
     public static final String EXTRA_MESSAGE = "com.example.footballresultsapp";
-    private ArrayList<Team> teams = new ArrayList<>();
     String competitionID;
+    private ListView listView;
+    private ArrayList<Team> teams = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

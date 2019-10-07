@@ -6,9 +6,9 @@ public class Scorer {
     private int goals;
 
     public Scorer(String scorerName, String team, int scorerGoals) {
-        this.scorerName = this.scorerName;
-        this.teamName = teamName;
-        this.goals = goals;
+        this.scorerName = scorerName;
+        this.teamName = team;
+        this.goals = scorerGoals;
     }
 
     public String getScorerName() {

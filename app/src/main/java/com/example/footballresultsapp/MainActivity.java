@@ -25,8 +25,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.footballresultsapp";
-       // public String[] areaCodes = {"2001", "2002"};
-    public String[] areaCodes = {"2001", "2002", "2014", "2015", "2019", "2021"};
+       public String[] areaCodes = {"2015"};
+    //public String[] areaCodes = {"2001", "2002", "2014", "2015", "2019", "2021"};
     private ListView listView;
     private ArrayList<League> leagues = new ArrayList<>();
 

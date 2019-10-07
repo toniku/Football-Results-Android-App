@@ -2,13 +2,13 @@ package com.example.footballresultsapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.android.volley.AuthFailureError;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,20 +23,21 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class ResultsActivity extends AppCompatActivity {
 
     private ListView listView;
-    private ArrayList<Match> results = new ArrayList<>();
+    private final ArrayList<Match> results = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         setTitle("Results");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
-        String competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
+        String competitionID = Objects.requireNonNull(intent.getExtras()).getString(MainActivity.EXTRA_MESSAGE);
         listView = findViewById(R.id.resultsListView);
         getCompetition(competitionID);
     }
@@ -74,7 +75,6 @@ public class ResultsActivity extends AppCompatActivity {
                             int awayGoals = score.getInt("awayTeam");
                             Match result = new Match(date, winner, homeTeam, awayTeam, homeGoals, awayGoals);
                             results.add(result);
-                        } else {
                         }
                     }
                 } catch (JSONException e) {
@@ -89,8 +89,8 @@ public class ResultsActivity extends AppCompatActivity {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
                 params.put("X-Auth-Token", "5e25ad658d7c4577aec218810b77e937");
                 return params;
             }

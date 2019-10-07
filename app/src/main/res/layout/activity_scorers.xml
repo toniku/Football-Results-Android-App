@@ -16,7 +16,7 @@
             android:layout_weight="43"
             android:background="@drawable/back"
             android:gravity="center"
-            android:text="ScorerName"
+            android:text="@string/player"
             android:textStyle="bold" />
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_weight="43"
             android:background="@drawable/back"
             android:gravity="center"
-            android:text="TeamName"
+            android:text="@string/team"
             android:textStyle="bold" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_weight="14"
             android:background="@drawable/back"
             android:gravity="center"
-            android:text="Goals"
+            android:text="@string/goals"
             android:textStyle="bold" />
 
     </LinearLayout>

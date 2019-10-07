@@ -1,4 +1,28 @@
 <resources>
     <string name="app_name">FootballResultsApp</string>
-    <string name="title_activity_standings">StandingsActivity</string>
+    <string name="player">Player</string>
+    <string name="team">Team</string>
+    <string name="goals">Goals</string>
+    <string name="hashTag">#</string>
+    <string name="games">Games</string>
+    <string name="wins">Wins</string>
+    <string name="draws">Draws</string>
+    <string name="loses">Loses</string>
+    <string name="points">Points</string>
+    <string name="borussia_m_nchengladbach">Borussia Mönchengladbach</string>
+    <string name="_19_00">19:00</string>
+    <string name="_2">2</string>
+    <string name="line">-</string>
+    <string name="_19_09_2019">19.09.2019</string>
+    <string name="bablo">Bablo</string>
+    <string name="huuhkajat">Huuhkajat</string>
+    <string name="_5">5</string>
+    <string name="_1">1</string>
+    <string name="_6">6</string>
+    <string name="_4">4</string>
+    <string name="_20">20</string>
+    <string name="results">Results</string>
+    <string name="upcoming_matches">Upcoming matches</string>
+    <string name="scorers">Scorers</string>
+    <string name="todo">TODO</string>
 </resources>

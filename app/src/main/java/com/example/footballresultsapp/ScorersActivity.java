@@ -2,13 +2,13 @@ package com.example.footballresultsapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.android.volley.AuthFailureError;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,24 +23,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class ScorersActivity extends AppCompatActivity {
 
     private ListView listView;
-    private ArrayList<Scorer> scorers = new ArrayList<>();
-
+    private final ArrayList<Scorer> scorers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Top 10 scorers");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Top 10 scorers");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_scorers);
         Intent intent = getIntent();
-        String competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
+        String competitionID = Objects.requireNonNull(intent.getExtras()).getString(MainActivity.EXTRA_MESSAGE);
         listView = findViewById(R.id.listViewScorers);
         getCompetition(competitionID);
-        Log.d("        ScorersActivity", competitionID);
     }
 
     @Override
@@ -58,12 +57,9 @@ public class ScorersActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
                 try {
                     JSONArray jsonArray = response.getJSONArray("scorers");
-
                     for (int i = 0; i < jsonArray.length(); i++) {
-
                         JSONObject scorerObject = jsonArray.getJSONObject(i);
                         JSONObject playerObject = scorerObject.getJSONObject("player");
                         String scorerName = playerObject.getString("name");
@@ -71,11 +67,6 @@ public class ScorersActivity extends AppCompatActivity {
                         String teamName = teamObject.getString("name");
                         int scorerGoals = scorerObject.getInt("numberOfGoals");
                         Scorer scoreToAdd = new Scorer(scorerName, teamName, scorerGoals);
-
-                        Log.d("Scorer Name: ", scorerName);
-                        Log.d("Scorer teamName: ", teamName);
-                        Log.d("Scorer Goals: ", Integer.toString(scorerGoals));
-
                         scorers.add(scoreToAdd);
                     }
 
@@ -91,8 +82,8 @@ public class ScorersActivity extends AppCompatActivity {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
                 params.put("X-Auth-Token", "5e25ad658d7c4577aec218810b77e937");
                 return params;
             }
@@ -101,7 +92,6 @@ public class ScorersActivity extends AppCompatActivity {
     }
 
     public void setupView() {
-
         final ArrayAdapter<Scorer> adapter;
         adapter = new ScorerArrayAdapter(this, scorers);
         listView.setAdapter(adapter);

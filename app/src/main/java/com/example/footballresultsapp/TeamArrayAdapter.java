@@ -2,21 +2,23 @@ package com.example.footballresultsapp;
 
 import android.content.Context;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TeamArrayAdapter extends ArrayAdapter<Team> {
 
-    static final int VIEW_TYPE_COUNT = 1;
-    static final int VIEW_TYPE = 2;
+    private static final int VIEW_TYPE_COUNT = 1;
+    private static final int VIEW_TYPE = 2;
 
     public TeamArrayAdapter(Context context, ArrayList<Team> items) {
         super(context, 0, items);
@@ -30,7 +32,6 @@ public class TeamArrayAdapter extends ArrayAdapter<Team> {
 
     @Override
     public int getItemViewType(int itemPosition) {
-        Team team = getItem(itemPosition);
         return VIEW_TYPE;
     }
 
@@ -52,7 +53,7 @@ public class TeamArrayAdapter extends ArrayAdapter<Team> {
         TextView losses = convertView.findViewById(R.id.team_losses);
         TextView points = convertView.findViewById(R.id.team_points);
 
-        ranking.setText(String.valueOf(team.getRankingNumber()));
+        ranking.setText(String.valueOf(Objects.requireNonNull(team).getRankingNumber()));
         teamName.setText(team.getTeamName());
         games.setText(String.valueOf(team.getPlayedGames()));
         wins.setText(String.valueOf(team.getWins()));

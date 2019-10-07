@@ -1,24 +1,26 @@
 package com.example.footballresultsapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 
 public class ResultsArrayAdapter extends ArrayAdapter<Match> {
 
 
-    static final int VIEW_TYPE_COUNT = 1;
-    static final int VIEW_TYPE = 2;
+    private static final int VIEW_TYPE_COUNT = 1;
+    private static final int VIEW_TYPE = 2;
 
     public ResultsArrayAdapter(Context context, ArrayList<Match> upcoming) {
         super(context, 0, upcoming);
@@ -32,10 +34,10 @@ public class ResultsArrayAdapter extends ArrayAdapter<Match> {
 
     @Override
     public int getItemViewType(int itemPosition) {
-        Match match = getItem(itemPosition);
         return VIEW_TYPE;
     }
 
+    @SuppressLint("ViewHolder")
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @NonNull
     @Override
@@ -43,20 +45,22 @@ public class ResultsArrayAdapter extends ArrayAdapter<Match> {
         Match match = getItem(itemPosition);
 
         int earlier = 0;
-        if(itemPosition > 0){
-            earlier = itemPosition -1;
+        if (itemPosition > 0) {
+            earlier = itemPosition - 1;
         }
 
         Match earlierMatch = getItem(earlier);
 
-        int layoutId = 0;
+        int layoutId;
+        assert match != null;
         String winner = match.getWinner();
-        String unparsedDate = match.getDate();
-        String parsedDate = unparsedDate.substring(0,10);
-        String parsedTime = unparsedDate.substring(11,16);
-        String earlierMatchDate = earlierMatch.getDate().substring(0,10);
+        String unParsedDate = match.getDate();
+        String parsedDate = unParsedDate.substring(0, 10);
+        String parsedTime = unParsedDate.substring(11, 16);
+        assert earlierMatch != null;
+        String earlierMatchDate = earlierMatch.getDate().substring(0, 10);
 
-        if(earlierMatchDate.equals(parsedDate)){
+        if (earlierMatchDate.equals(parsedDate)) {
             layoutId = R.layout.result_list_item;
         } else {
             layoutId = R.layout.result_new_day_list_item;
@@ -71,20 +75,20 @@ public class ResultsArrayAdapter extends ArrayAdapter<Match> {
         TextView homeGoals = convertView.findViewById(R.id.homeTeamGoals);
         TextView awayGoals = convertView.findViewById(R.id.awayTeamGoals);
 
-        if(winner.contains("AWAY")){
+        if (winner.contains("AWAY")) {
             awayTeam.setTypeface(null, Typeface.BOLD);
-            //awayGoals.setTypeface(null, Typeface.BOLD);
+
         } else {
             awayTeam.setTypeface(null, Typeface.NORMAL);
         }
-        if(winner.contains("HOME")){
+        if (winner.contains("HOME")) {
             homeTeam.setTypeface(null, Typeface.BOLD);
-            //homeGoals.setTypeface(null, Typeface.BOLD);
-        }else {
+
+        } else {
             homeTeam.setTypeface(null, Typeface.NORMAL);
         }
 
-        if(layoutId == R.layout.result_new_day_list_item) {
+        if (layoutId == R.layout.result_new_day_list_item) {
             date.setText(parsedDate);
         }
         time.setText(parsedTime);

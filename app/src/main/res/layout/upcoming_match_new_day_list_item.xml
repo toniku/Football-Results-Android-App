@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:gravity="center"
-        android:text="19.09.2019"/>
+        android:text="@string/_19_09_2019"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:maxLines="2"
             android:layout_weight="2"
             android:background="@drawable/back"
-            android:text="Borussia Mönchengladbach"/>
+            android:text="@string/borussia_m_nchengladbach"/>
 
         <LinearLayout
             android:background="@drawable/back"
@@ -40,8 +40,8 @@
                 android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="19:00"
-                android:textSize="20dp"
+                android:text="@string/_19_00"
+                android:textSize="20sp"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -54,6 +54,6 @@
             android:maxLines="2"
             android:layout_weight="2"
             android:background="@drawable/back"
-            android:text="Borussia Mönchengladbach"/>
+            android:text="@string/borussia_m_nchengladbach"/>
     </LinearLayout>
 </LinearLayout>

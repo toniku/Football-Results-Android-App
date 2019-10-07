@@ -15,7 +15,7 @@
             android:layout_weight="0.5"
             android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="#"
+            android:text="@string/hashTag"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
             android:layout_weight="2.8"
             android:background="@drawable/back"
             android:gravity="center"
-            android:text="Team"
+            android:text="@string/team"
             android:textStyle="bold" />
 
 
@@ -35,7 +35,7 @@
             android:layout_weight="0.8"
             android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Games"
+            android:text="@string/games"
             android:textStyle="bold" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_weight="0.8"
             android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Wins"
+            android:text="@string/wins"
             android:textStyle="bold" />
 
         <TextView
@@ -53,7 +53,7 @@
             android:layout_weight="0.8"
             android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Draws"
+            android:text="@string/draws"
             android:textStyle="bold" />
 
         <TextView
@@ -62,7 +62,7 @@
             android:layout_weight="0.8"
             android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Loses"
+            android:text="@string/loses"
             android:textStyle="bold" />
 
         <TextView
@@ -71,7 +71,7 @@
             android:layout_weight="0.8"
             android:background="@drawable/back"
             android:gravity="center_horizontal"
-            android:text="Points"
+            android:text="@string/points"
             android:textStyle="bold" />
 
     </LinearLayout>

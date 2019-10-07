@@ -2,7 +2,8 @@ package com.example.footballresultsapp;
 
 public class League {
 
-    private String name, competitionID;
+    private final String name;
+    private final String competitionID;
 
     public League(String name, String competitionID) {
         this.name = name;
@@ -15,10 +16,6 @@ public class League {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 

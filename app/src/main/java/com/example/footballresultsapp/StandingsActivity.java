@@ -2,7 +2,6 @@ package com.example.footballresultsapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,7 +9,8 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.android.volley.AuthFailureError;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,22 +25,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class StandingsActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.footballresultsapp";
     String competitionID;
     private ListView listView;
-    private ArrayList<Team> teams = new ArrayList<>();
+    private final ArrayList<Team> teams = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Teams");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Teams");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_standings);
         Intent intent = getIntent();
-        competitionID = intent.getExtras().getString(MainActivity.EXTRA_MESSAGE);
+        competitionID = Objects.requireNonNull(intent.getExtras()).getString(MainActivity.EXTRA_MESSAGE);
         listView = findViewById(R.id.teamsListView);
         getCompetition(competitionID);
     }
@@ -82,7 +83,6 @@ public class StandingsActivity extends AppCompatActivity {
     public void getCompetition(String competitionID) {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://api.football-data.org/v2/competitions/" + competitionID + "/standings";
-        //String url = "https://api.football-data.org/v2/competitions/"+competitionID+"/matches";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -115,8 +115,8 @@ public class StandingsActivity extends AppCompatActivity {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
                 params.put("X-Auth-Token", "5e25ad658d7c4577aec218810b77e937");
                 return params;
             }

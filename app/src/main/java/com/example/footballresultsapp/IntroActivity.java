@@ -18,16 +18,6 @@ public class IntroActivity extends AppIntro {
         super.onCreate(savedInstanceState);
         setFadeAnimation();
 
-        // Add your slide fragments here.
-        // AppIntro will automatically generate the dots indicator and buttons.
-        //addSlide(firstFragment);
-        //addSlide(secondFragment);
-        //addSlide(thirdFragment);
-        //addSlide(fourthFragment);
-
-        // Instead of fragments, you can also use our default slide.
-        // Just create a `SliderPage` and provide title, description, background and image.
-        // AppIntro will do the rest.
         SliderPage sliderPage = new SliderPage();
         sliderPage.setTitle("Welcome to Football-Results.");
         sliderPage.setDescription("Simple app to check current football statistics.");
@@ -49,19 +39,8 @@ public class IntroActivity extends AppIntro {
         sliderPage2.setBgColor(Color.parseColor("#3B5323"));
         addSlide(AppIntroFragment.newInstance(sliderPage2));
 
-        // OPTIONAL METHODS
-        // Override bar/separator color.
-        //setBarColor(Color.parseColor("#3F51B5"));
-        //setSeparatorColor(Color.parseColor("#2196F3"));
-
-        // Hide Skip/Done button.
         showSkipButton(true);
         setProgressButtonEnabled(true);
-
-        // Turn vibration on and set intensity.
-        // NOTE: you will probably need to ask VIBRATE permission in Manifest.
-        //setVibrate(true);
-        //setVibrateIntensity(30);
     }
 
     @Override
@@ -81,7 +60,5 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);
-        // Do something when the slide changes.
-        //mainActivityIntent();
     }
 }

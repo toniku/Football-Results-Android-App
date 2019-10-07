@@ -2,9 +2,6 @@ package com.example.footballresultsapp;
 
 import android.content.Context;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +9,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LeagueArrayAdapter extends ArrayAdapter<League> {
 
-    static final int VIEW_TYPE_COUNT = 1;
-    static final int VIEW_TYPE = 2;
+    private static final int VIEW_TYPE_COUNT = 1;
+    private static final int VIEW_TYPE = 2;
 
     public LeagueArrayAdapter(Context context, ArrayList<League> items) {
         super(context, 0, items);
@@ -31,7 +33,6 @@ public class LeagueArrayAdapter extends ArrayAdapter<League> {
 
     @Override
     public int getItemViewType(int position) {
-        League league = getItem(position);
         return VIEW_TYPE;
     }
 
@@ -47,7 +48,7 @@ public class LeagueArrayAdapter extends ArrayAdapter<League> {
         }
         TextView textViewName = convertView.findViewById(R.id.league_textView);
         ImageView leagueImage = convertView.findViewById(R.id.league_ImageView);
-        textViewName.setText(league.getName());
+        textViewName.setText(Objects.requireNonNull(league).getName());
         switch (league.getName()) {
             case "UEFA Champions League":
                 leagueImage.setImageResource(R.drawable.uefa_champions_league);

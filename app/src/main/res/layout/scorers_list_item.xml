@@ -12,7 +12,7 @@
         android:layout_weight="43"
         android:background="@drawable/back"
         android:gravity="center"
-        android:text="Bablo"
+        android:text="@string/bablo"
         android:textStyle="bold" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_weight="43"
         android:background="@drawable/back"
         android:gravity="center"
-        android:text="Huuhkajat"
+        android:text="@string/huuhkajat"
         android:textStyle="bold" />
 
     <TextView
@@ -32,7 +32,7 @@
         android:layout_weight="14"
         android:background="@drawable/back"
         android:gravity="center"
-        android:text="5"
+        android:text="@string/_5"
         android:textStyle="bold" />
 
 </LinearLayout>

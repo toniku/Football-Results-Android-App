@@ -2,21 +2,23 @@ package com.example.footballresultsapp;
 
 import android.content.Context;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ScorerArrayAdapter extends ArrayAdapter<Scorer> {
 
-    static final int VIEW_TYPE_COUNT = 1;
-    static final int VIEW_TYPE = 2;
+    private static final int VIEW_TYPE_COUNT = 1;
+    private static final int VIEW_TYPE = 2;
 
     public ScorerArrayAdapter(Context context, ArrayList<Scorer> items) {
         super(context, 0, items);
@@ -30,7 +32,6 @@ public class ScorerArrayAdapter extends ArrayAdapter<Scorer> {
 
     @Override
     public int getItemViewType(int itemPosition) {
-        Scorer scorer = getItem(itemPosition);
         return VIEW_TYPE;
     }
 
@@ -49,7 +50,7 @@ public class ScorerArrayAdapter extends ArrayAdapter<Scorer> {
         TextView scorerTeamName = convertView.findViewById(R.id.scorerTeamName);
         TextView goals = convertView.findViewById(R.id.goals);
 
-        scorerName.setText(String.valueOf(scorer.getScorerName()));
+        scorerName.setText(String.valueOf(Objects.requireNonNull(scorer).getScorerName()));
         scorerTeamName.setText(scorer.getTeamName());
         goals.setText(String.valueOf(scorer.getGoals()));
 

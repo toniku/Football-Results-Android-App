@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Results"
-        android:id="@+id/menuResults"
-        ></item>
+        android:title="@string/results"
+        android:id="@+id/menuResults" />
 
     <item
-        android:title="Upcoming matches"
-        android:id="@+id/menuSchedule"
-        ></item>
+        android:title="@string/upcoming_matches"
+        android:id="@+id/menuSchedule" />
 
     <item
-        android:title="Scorers"
-        android:id="@+id/menuScorers"
-        ></item>
+        android:title="@string/scorers"
+        android:id="@+id/menuScorers" />
 
 </menu>

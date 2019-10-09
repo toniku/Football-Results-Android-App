@@ -1,0 +1,9 @@
+- As a user, I want to quickly learn how to use the app after first installation
+- As a user, I want to see leagues on the main screen of the app
+- As a user, when I select one of leagues, I want to see the teams that belong to that specific league
+- As a user, when one league is selected, I want to be able to easily check out stats from that view
+- As a user, I want to select "Results" from the menu bar, and then see the match results of the selected league
+- As a user, I want to select "Upcoming matches" from the menu bar, and see the upcoming matches of the selected league
+- As a user, I want to select "Scorers" from the menu bar, and then see the top 10 scorers of the selected league
+- As a user, I want app to be quickly responsive when checking out stats
+- As a user, I want to search specific league or team and then view the results
